@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+{% include "blog/head.html" %}
+<title>{% block title %}VIBES | Home  {% endblock  %}</title>
+<body>
+{% include "blog/header.html" %}
+{% block content %}
+{% endblock %}
+{% include "blog/js.html" %}
+</body>
+</html>

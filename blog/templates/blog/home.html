@@ -1,0 +1,157 @@
+{% extends "blog/base.html" %}
+{% block title %}VIBES | Home{% endblock title %}
+{% load static %}
+{% load humanize %}
+ {% block content %}
+
+ <!--================= Back Wrapper Start Here =================-->
+        <div class="back-wrapper">
+            <!--================= Back Hero Start Here =================-->
+            <div class="back-hero-area md-mt-40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ul class="back-hero-slider owl-carousel">
+                             {% for post in featured_posts %}
+                                <li>
+                                    <div class="image-area">
+                                        <a href="{{post.get_absolute_url}}"><img src="{{ post.cover_picture_thumbnail.url }}" alt="image"></a>
+
+                                        <div class="back-btm-content">
+
+                                            <a href="category/{{post.category}}" class="back-cate back-life">{{post.category}}</a>
+
+                                            <h3><a href="{{post.get_absolute_url}}">{{ post.title }}</a></h3>
+                                            <ul>
+
+                                                <li class="back-date"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>{{ post.timestamp|naturalday }}</li>
+                                                <li class="back-comments"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>{{ post.comments.count }} Comments</li>
+                                                <li><i style="color:red" class="fa fa-heart"></i><span style="padding-left:5px;"> {{post.likes.count}} likes</span></li>
+                                                <li><i class="fa fa-eye"></i><span style="padding-left:5px;"> {{post.get_total_views}}</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                             {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 back-hero-right">
+                            <div class="row back-pl-6">
+                                <div class="col-lg-12">
+                                    <ul>
+
+                                        <li>
+                                            <div class="image-area">
+                                                <a href="{{tech_post.get_absolute_url}}"><img src="{{tech_post.cover_picture_thumbnail.url}}" alt="image"></a>
+                                                <div class="back-btm-content">
+                                                    <a href="category/{{tech_post.category}}" class="back-cate back-poli">Technology</a>
+                                                    <h3><a href="{{tech_post.get_absolute_url}}">{{tech_post.title }}</a></h3>
+                                                    <ul>
+                                                        <li class="back-date"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>{{ tech_post.timestamp|naturalday }}</li>
+                                                <li class="back-comments"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>{{ tech_post.comments.count }} Comments</li>
+                                                <li><i style="color:red" class="fa fa-heart"></i><span style="padding-left:5px;"> {{tech_post.likes.count}} likes</span></li>
+                                                <li><i class="fa fa-eye"></i><span style="padding-left:5px;"> {{tech_post.get_total_views}}</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!--================= Back Hero End Here =================-->
+
+            <!--================= Back Trending Stories Start Here =================-->
+
+            <!--================= Back Trending Stories End Here =================-->
+
+            <!--================= Back Latest Posts Start Here =================-->
+
+            <!--================= Back Latest Posts End Here =================-->
+
+            <!--================= Back Add Start Here =================-->
+            <br><br><div class="back-add text-center"><div class="container"><img src="{% static 'blog/assets/images/add2.jpg' %}" alt="add-image"></div></div>
+            <!--================= Back Add End Here =================-->
+
+            <!--================= Back Whats Posts Start Here =================-->
+
+            <!--================= Back Whats Posts End Here =================-->
+
+            <!--================= Back Trading Video Start Here =================-->
+
+            <!--================= Back Trading Video End Here =================-->
+
+            <!--================= Back Feature Posts Start Here =================-->
+            <div class="back-hero-area back-latest-posts back-whats-posts back-feature-posts">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="back-title">
+                                <h2>Latest Posts</h2>
+                            </div>
+
+                            {% include 'blog/post_list.html' %}
+
+                        </div>
+                        <div class="col-lg-4 pl-30">
+                            <div class="back-title back-small-title">
+                                <h2>Categories</h2>
+                            </div>
+                            <ul class="back-category-area2">
+                                {% for post in categories %}
+                                <li>
+                                    <div>
+                                        <img src="{{post.cover_picture_thumbnail.url }}" alt="Cagegory Image">
+                                        <a href="category/{{post.title}}"><span><em>{{post.get_post_count}}</em>{{post.title}}</span></a>
+                                    </div>
+                                </li>
+                               {% endfor %}
+                            </ul>
+                            <div class="back-title back-small-title pt-30">
+                                <h2>Most Read</h2>
+                            </div>
+                            <ul class="back-hero-bottom">
+                                {% for post in most_read_posts.most_read_posts %}
+                                <li>
+                                    <div class="image-areas">
+                                        <a href="#"><img src="{{ post.cover_picture_thumbnail.url }}" alt="image"></a>
+                                    </div>
+                                    <div class="back-btm-content">
+                                        <a href="#" class="back-cates">{{ post.category.name }}</a>
+                                        <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--================= Back Feature Posts End Here =================-->
+
+            <!--================= Back Footer Top Area Start Here =================-->
+
+            <!--================= Back Footer Top Area End Here =================-->
+        </div>
+        <!--================= Back Wrapper End Here =================-->
+
+
+     <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+  <script>
+        document.body.addEventListener('htmx:configRequest', (e) => {
+          e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+          })
+   </script>
+
+{% endblock  %}

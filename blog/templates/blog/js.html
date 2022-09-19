@@ -1,0 +1,32 @@
+{% load static %}
+
+<!--================= Jquery latest version =================-->
+        <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
+        <!--================= Bootstrap js =================-->
+        <script src="{% static 'blog/assets/js/bootstrap.min.js' %}"></script>
+        <!--================= Owl Carousel js =================-->
+        <script src="{% static 'blog/assets/js/owl.carousel.min.js' %}"></script>
+        <!--================= Magnific Popup =================-->
+        <script src="{% static 'blog/assets/js/jquery.magnific-popup.min.js' %}"></script>
+        <!--================= Wow js =================-->
+        <script src="{% static 'blog/assets/js/wow.min.js' %}"></script>
+        <!--================= Back menus js =================-->
+        <script src="{% static 'blog/assets/js/back-menus.js' %}"></script>
+        <!--================= Plugins js =================-->
+        <script src="{% static 'blog/assets/js/plugins.js' %}"></script>
+		<!--================= Main js =================-->
+        <script src="{% static 'blog/assets/js/main.js' %}"></script>
+        <script src="{% static 'blog/assets/js/htmx.min.js.js' %}"></script>
+        <script>
+        document.body.addEventListener('htmx:configRequest', (e) => {
+          e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+          })
+        </script>
+
+
+
+
+
+
+
+

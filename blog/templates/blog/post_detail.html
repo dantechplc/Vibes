@@ -1,0 +1,162 @@
+{% extends "blog/base.html" %}
+{% block title %}VIBES | {{post.title}} {% endblock %}
+{% load static %}
+{% load humanize %}
+{% load social_share %}
+{% block content %}
+        <div class="back-wrapper">
+            <!--================= Back Breadcrumbs Section Start Here =================-->
+            <div class="back-breadcrumbs">
+                <div class="breadcrumbs-wrap">
+                    <div class="breadcrumbs-inner">
+                        <div class="container">
+                            <div class="breadcrumbs-text">
+                                <h1 class="breadcrumbs-title">{{post.title}}</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--================= Back Breadcrumbs Section End Here =================-->
+
+            <!--================= Blog Section Start Here =================-->
+            <div class="back__blog__area back-blog-page back-blog-page-single pt-70 pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="blog-single-inner">
+                                <div class="blog-content">
+                                    <div class="blog-image">
+                                        <img src="{{ post.cover_picture_thumbnail.url }}" alt="Blog Image">
+                                    </div>
+
+
+                                    <div class="back-blog-related">
+                                        <div class="container">
+
+                                        <p>{{post.content|safe}}</p>
+                                         </div>
+                                    </div>
+                                    <hr>
+
+                                  {% include 'blog/like_area.html' %}
+
+
+
+
+
+
+                                    <div class="back-blog-related">
+                                        <div class="container">
+
+
+                                            <div class="blog-tags">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-8">
+                                                        <ul class="mata-tags">
+                                                            <li class="tags">Tags:</li>
+                                                        {% for tags in post_tags %}
+                                                            <li><a href="{% url 'post_tag' tags.slug %}">{{tags}}</a></li>
+                                                           {% endfor %}
+                                                        </ul>
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <ul class="social-links text-right">
+                                                            <li class="shares">Share: </li>
+
+
+                                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="back-blog-related">
+                                        <div class="container">
+                                        <div class="back-title back-small-title">
+                                            <h2>Related Posts</h2>
+                                        </div>
+                                            <ul id="back-blog-slider" class="owl-carousel owl-theme">
+                                                {% for post in similar_posts %}
+                                                <li class="item">
+                                                    <div class="back-inner">
+                                                        <div class="back-blog-image">
+                                                            <a href="{{post.get_absolute_url}}"><img src="{{ post.cover_picture_thumbnail.url }}"  alt="post image"></a>
+                                                        </div>
+                                                        <div class="back-blog-content">
+                                                            <em class="back-blog-date">{{ post.timestamp|naturalday }}</em>
+                                                            <a href="{{post.get_absolute_url}}"><h3>{{post.title}}</h3></a>
+
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                 {% empty %}
+                                                <p class="text-muted">There is no similar post yet</p>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% include "blog/comments.html" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="back-sidebar pl-30 md-pl-0 back-hero-area back-latest-posts back-whats-posts">
+
+
+
+
+                                <div class="back-title back-small-title pt-30">
+                                    <h2>Latest News</h2>
+                                </div>
+                                <ul class="back-hero-bottom">
+                                    {% for post in latest_posts %}
+                                    <li>
+                                        <div class="image-areas">
+                                            <a href="#"><img src="{{post.cover_picture_thumbnail.url}}" alt="image"></a>
+                                        </div>
+                                        <div class="back-btm-content">
+                                            {% for category in post.category.all %}
+                                            <a href="#" class="back-cates">{{category}}</a>
+                                            {% endfor %}
+                                            <h3><a href='{{post.get_absolute_url}}'>{{post.title}}</a></h3>
+                                            <ul>
+                                                <li class="back-date"> <a href="#">by {{post.author.user.full_name}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+
+                                </ul>
+<!--                                ads-->
+                                <div class="back-add pt-15"> <img src="{% static 'blog/assets/images/whats/add.jpg' %}" alt="add-image"> </div>
+<!--                                ads ends-->
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!--================= Blog Section End Here =================-->
+
+
+        <!--================= Back Wrapper End Here =================-->
+
+{% endblock %}
+
+
+

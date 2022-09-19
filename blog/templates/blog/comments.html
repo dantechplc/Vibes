@@ -1,0 +1,170 @@
+ {% load static %}
+ <style>
+.accordion {
+    float: right;
+
+}
+
+
+
+.accordion:after {
+  content: 'Show replies';
+  color: black;
+  font-weight: bold;
+  float: left;
+  margin-left: 5px;
+}
+
+.action:after {
+  content: "Hide";
+  color: black;
+}
+
+.panel {
+  padding: 0 18px;
+
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+</style>
+<div class="author-comment">
+                                             {% with comments.count as total_comments %}
+                                        <div class="back-title back-small-title">
+                                            <h2> {{ total_comments }} comment{{ total_comments|pluralize }}</h2>
+                                        </div>
+                                             {% endwith %}
+                                        <div class="back-blog-form">
+                                            <div id="blog-form" class="blog-form">
+                                                <div class="back-title back-small-title">
+    
+                                                </div>
+                                                {% if request.user.is_authenticated %}
+                                                            <form method="post"  >
+                                                                {% csrf_token %}
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="back-textarea">
+                                                                           {{ comment_form.as_p }}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-4">
+
+                                                                        <button type="submit" class="back-btn">Submit </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                {% else %}
+                                                            <form action="{% url 'login' %}"  >
+
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="back-textarea">
+                                                                            <textarea placeholder="Comment here"></textarea>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-4">
+
+
+                                                                        <a href="{% url 'login' %}"><button  class="back-btn">Submit </button></a>
+
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+
+                                        {% load mptt_tags %}
+                                        <br><br>
+                                            {% recursetree comments %}
+                                        <ul>
+                                            <li>
+                                                <div id="{{ node.id }}" class="row">
+                                                    <div class="col-lg-1">
+                                                        <div class="image-comments"><img src="{{ node.user.profile_pic_thumbnail.url}}" alt=""> </div>
+                                                    </div>
+                                                    <div class="col-lg-11">
+                                                        <div class="dsc-comments">
+                                                            <h6>{{ node.user.full_name }}</h6>
+                                                            <span class="reply"> <span class="date">{{ node.publish }}</span></span>
+                                                            <p>{{ node.content }}</p>
+                                                            {% if node.level < 1 %}
+                                                            <a onclick="myFunction({{ node.id }})">Reply</a>
+
+
+
+                                                                    {% if not node.is_leaf_node %}
+
+                                                            <a class="accordion" ></a>
+                                                                <div class="panel">
+                                                                  {{ children }}
+                                                                </div>
+
+                                                            {% endif %}
+
+
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+
+                                        </ul>
+                                                {% endrecursetree %}
+
+</div>
+ <script>
+     var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("action");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+ </script>
+ <script>
+  function formExit() {
+    document.getElementById("newForm").remove();
+  }
+
+  function myFunction(id) {
+    if (document.contains(document.getElementById("newForm"))) {
+      document.getElementById("newForm").remove();
+    }
+
+    var d1 = document.getElementById(id);
+    d1.insertAdjacentHTML('afterend',
+      '<form id="newForm" class="form-insert py-2" method="post"> \
+                <div class="d-flex justify-content-between"><h3>Reply:</h3><div><button type="button" class="btn btn-outline-secondary" onclick="formExit()"">Close</button></div></div> \
+                <select name="parent" class="d-none" id="id_parentt"> \
+                <option value="' + id + '" selected="' + id + '"></option> \
+                </select> \
+                <label for="id_content">Content:</label> \
+                <textarea name="content" cols="40" rows="5" class="form-control" required id="id_content"></textarea> \
+                {% csrf_token %} \
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button> \
+              </form>');
+  }
+
+  $('#myForm').trigger("reset");
+
+
+
+
+
+  </script>
+
+
+

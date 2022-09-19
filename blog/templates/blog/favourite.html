@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+{% block title %}VIBES | Favourites{% endblock %}
+{% load humanize %}
+{% block content %}
+<!--================= Back Wrapper Start Here =================-->
+        <div class="back-wrapper">
+            <!--================= Back Breadcrumbs Section Start Here =================-->
+            <div class="back-breadcrumbs">
+                <div class="breadcrumbs-wrap">
+                    <div class="breadcrumbs-inner">
+                        <div class="container">
+                            <div class="breadcrumbs-text">
+                                <h1 class="breadcrumbs-title">Favourite Posts</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--================= Back Breadcrumbs Section End Here =================-->
+             <!--================= Back Trending Stories Start Here =================-->
+            <div class="back-category-style-grid pt-70 pb-70">
+                <div class="container">
+                    <div class="row">
+                        {% for post in favourites %}
+                        <div class="col-lg-4">
+                            <div class="image-areas">
+                                <a href="{{post.get_absolute_url}}"><img src="{{post.cover_picture_thumbnail.url }}" alt="image"></a>
+                            </div>
+                            <div class="back-btm-content">
+                                <a href="" class="back-cates">{{post.category.name}}</a>
+                                <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+                                <ul>
+                                    <li class="back-date"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>{{post.timestamp|naturalday }}</li>
+                                   <li><i style="color:blue" class="fa fa-eye"></i><span style="padding-left:5px;"> {{post.get_total_views}}</span></li>
+                                    <li><i style="color:red" class="fa fa-heart"></i><span style="padding-left:5px;"> {{post.likes.count}} likes</span></li>
+                                    <li class="back-comments"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>{{ post.comments.count }} Comments</li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        {% empty %}
+                        <h4>No favourite post yet!</h4>
+                        {% endfor %}
+
+                    </div>
+                    <!--================= Back Pagination Start Here =================-->
+
+                    <!--================= Back Pagination End Here =================-->
+                </div>
+            </div>
+            <!--================= Back Trending Stories End Here =================-->
+        </div>
+        <!--================= Back Wrapper End Here =================-->
+
+
+
+{% endblock content %}

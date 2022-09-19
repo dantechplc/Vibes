@@ -1,0 +1,34 @@
+{% load humanize %}
+
+
+<ul class="back-hero-bottom back-hero-bottom2">
+                                {% for post in page_obj %}
+
+                                {% if forloop.last %}
+                                <div hx-get="{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-trigger="revealed" hx-swap="afterend" hx-target="this"></div>
+                                {% else %}
+                                    {% endif %}
+                                <li>
+                                    <div class="image-areas">
+                                        <a href="{{post.get_absolute_url}}"><img src="{{ post.cover_picture_thumbnail.url }}" alt="image"></a>
+                                    </div>
+                                    <div class="back-btm-content">
+
+                                        <a href="category/{{post.category}}" class="back-cate back-tra">{{post.category}}</a>
+
+                                        <h3><a href="{{post.get_absolute_url}}">{{post.title|safe}}</a></h3>
+                                        <p>{{ post.overview|safe|linebreaks|truncatewords:50 }}</p>
+                                        <ul class="back-meta">
+                                           <li class="back-date"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>{{ post.timestamp|naturalday }}</li>
+                                                <li class="back-comments"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>{{ post.comments.count }} Comments</li>
+
+                                                <li><i class="fa fa-eye"></i><span style="padding-left:5px;"> {{post.get_total_views}}</span></li>
+
+
+                                        </ul>
+                                       {% include 'blog/like_area.html' %}
+
+                                    </div>
+                                </li>
+                               {% endfor %}
+                            </ul>

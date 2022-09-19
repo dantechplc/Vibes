@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+{% block title %}VIBES | Login{% endblock %}
+{% load static %}
+{% block content %}
+
+
+ <!--================= Back Breadcrumbs Section End Here =================-->
+
+            <div class="back-login-page pt-70 pb-70">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="login-left-content">
+                                <h1>Sign in to <br>Experience the Vibes.</h1>
+                                <p>It you don't have an account you can <a href="{% url 'register' %}">Register here!</a></p>
+                                <img style="width:400px" src="{% static 'blog/assets/images/vibes1.png' %}" alt="login">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="login-right-form">
+                                <form method="post" >
+                                    {% csrf_token %}
+
+
+                                    <p>
+                                        <label>Email</label>
+                                        {{form.email}}
+                                    </p>
+                                    <p>
+                                        <label>Password</label>
+                                        {{form.password}}
+                                    </p>
+                                    <div class="back-check-box">
+
+                                        <a href="#" ><p>Forgot your password?</p></a>
+                                    </div>
+                                    <button type="submit" id="button" name="submit">Sign In</button>
+                                    <em class="signup">New to Vibes? <a href="{% url 'register' %}" >Sign Up</a></em>
+                                     <span class="back-or"> ........ Or, sign in with your social account ........ </span>
+                                     <ul class="social-links">
+                                            <li><a href="#" class="fa-brand"><span aria-hidden="true" class="fa-brands fa-facebook-f"></span></a></li>
+                                            <li><a href="#"><span aria-hidden="true" class="fa-brands fa-google-plus-g"></span></a></li>
+                                     </ul>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--================= Back Wrapper End Here =================-->
+
+
+
+{% endblock content %}

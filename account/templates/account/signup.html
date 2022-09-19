@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+{% block title %}VIBES | Register{% endblock %}
+{% load static %}
+{% block content %}
+
+
+ <!--================= Back Breadcrumbs Section End Here =================-->
+
+            <div class="back-login-page pt-70 pb-70">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="login-left-content">
+                                <h1>Create a <br>Free Account.</h1>
+
+                                <img style="width:400px" src="{% static 'blog/assets/images/vibes1.png' %}" alt="login">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="login-right-form">
+                                <form method="post" >
+                                    {% csrf_token %}
+
+
+                                    <p>
+                                        <label>Username</label>
+                                        {{form.username}}
+                                    </p>
+                                    <p>
+                                        <label>Email</label>
+                                        {{form.email}}
+                                        <p style="color:red;">{{form.email.errors}}</p>
+                                    </p>
+									 <p>
+                                        <label>Country</label>
+                                        {{form.country}}
+                                    </p>
+									 <p>
+                                        <label>Password</label>
+                                        {{form.password1}}
+                                         <p style="color:red;">{{form.password2.errors}}</p>
+                                    </p>
+									 <p>
+                                        <label>Re-type Password</label>
+                                        {{form.password2}}
+                                    </p>
+
+                                    <button type="submit" id="button" name="submit">Sign In</button>
+                                    <em class="signup">Login to Vibes? <a href="{% url 'register' %}" >Sign In</a></em>
+                                     <span class="back-or"> ........ Or, register with your social account ........ </span>
+                                     <ul class="social-links">
+                                            <li><a href="#" class="fa-brand"><span aria-hidden="true" class="fa-brands fa-facebook-f"></span></a></li>
+                                            <li><a href="#"><span aria-hidden="true" class="fa-brands fa-google-plus-g"></span></a></li>
+                                     </ul>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--================= Back Wrapper End Here =================-->
+
+
+
+{% endblock content %}

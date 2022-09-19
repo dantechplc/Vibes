@@ -1,0 +1,141 @@
+{% load static %}
+        <!--================= Back offcanvas Start Here =================-->
+        <div class="back-offcanvas"></div>
+        <div class="back-canvas">
+            <div class="close-btn">
+                <a id="nav-close" class="nav-close">
+                    <div class="back-close">
+                        <span class="line1"></span>
+                        <span class="line2"></span>
+                    </div>
+                </a>
+            </div>
+            <div class="offback-logo">
+                <a href="#" class="logo-text"> <img src="{% static 'blog/assets/images/vibes1.png' %}" alt="logo"></a>
+            </div>
+
+        </div>
+        <!--================= Back offcanvas End Here =================-->
+  <!--================= Header Section Start Here =================-->
+        <header id="back-header" class="back-header">
+            <!--================= Topbar Section Start Here =================-->
+
+            <!--================= Topbar Section End Here =================-->
+            <div class="menu-part">
+                <div class="container">
+                    <!--================= Back Menu Start Here =================-->
+                    <div class="back-main-menu">
+                        <nav>
+                            <!--================= Menu Toggle btn =================-->
+                            <div class="menu-toggle">
+                                <div class="logo"><a href="{% url 'home' %}" class="logo-text"> <img class="back-logo-dark" src="{% static 'blog/assets/images/vibes1.png' %}" alt="logo"> <img class="back-logo-light" src="{% static 'blog/assets/images/vibes2.png' %}" alt="logo"> </a></div>
+                                {% if request.user.is_authenticated %}
+                                <div class="searchbar-part back-search-mobile">
+                                    <ul>
+                                        <li class="back-dark-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun back-go-light1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon back-go-dark1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></li>
+                                        <li class="back_search"><a href="{% url 'search' %}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></a>
+
+                                        </li>
+
+                                        <li class="back-sign"><a href="{% url 'logout' %}">Logout</a></li>
+                                        <li id="nav-expanders" class="nav-expander bar">
+                                            <span class="back-hum1"></span>
+                                            <span class="back-hum2"></span>
+                                            <span class="back-hum3"></span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                {% else %}
+                                 <div class="searchbar-part back-search-mobile">
+                                    <ul>
+                                        <li class="back-dark-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun back-go-light1"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon back-go-dark1"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></li>
+                                        <li class="back_search"><a href="{% url 'search' %}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></li></a>
+                                        <li class="back-sign"><a href="{% url 'login' %}">Sign in</a></li>
+                                        <li id="nav-expanders" class="nav-expander bar">
+                                            <span class="back-hum1"></span>
+                                            <span class="back-hum2"></span>
+                                            <span class="back-hum3"></span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                {% endif %}
+
+                                <button type="button" id="menu-btn">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <!--================= Menu Structure =================-->
+                            {% if request.user.is_authenticated %}
+                            <div class="back-inner-menus">
+                                <ul id="backmenu" class="back-menus back-sub-shadow">
+                                    <li> <a href="{% url 'home' %}">Home</a>
+
+                                    </li>
+                                    <li> <a href="{% url 'category' %}">Categories</a>
+
+                                    </li>
+                                    <li> <a href="{% url 'fav_list' %}">Favorites</a>
+
+                                    </li>
+
+
+                                </ul>
+
+                                <div class="searchbar-part back-search-desktop">
+                                    <ul>
+                                        <li class="back-dark-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun back-go-light"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon back-go-dark"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></li>
+                                        <li class="back_search"><a href="{% url 'search' %}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></li></a>
+                                        <li class="back-sign"><a href="{% url 'logout' %}" >Logout</a></li>
+                                        <li id="nav-expander" class="nav-expander bar">
+                                            <span class="back-hum1"></span>
+                                            <span class="back-hum2"></span>
+                                            <span class="back-hum3"></span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="back-inner-menus">
+                                <ul id="backmenu" class="back-menus back-sub-shadow">
+                                    <li> <a href="{% url 'home' %}">Home</a>
+
+                                    </li>
+                                    <li> <a href="{% url 'category' %}">Categories</a>
+
+                                    </li>
+                                    <li><a href="{% url 'login' %}">Sign in</a></li>
+
+
+                                </ul>
+
+                                <div class="searchbar-part back-search-desktop">
+                                    <ul>
+                                        <li class="back-dark-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun back-go-light"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon back-go-dark"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></li>
+                                        <li class="back_search"><a href="{% url 'search' %}" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></li></a>
+                                        <li class="back-sign"><a href="{% url 'login' %}">Sign in</a></li>
+                                        <li id="nav-expander" class="nav-expander bar">
+                                            <span class="back-hum1"></span>
+                                            <span class="back-hum2"></span>
+                                            <span class="back-hum3"></span>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            {% endif %}
+                        </nav>
+                    </div>
+                    <!--=================  Back Menu End Here  =================-->
+                </div>
+            </div>
+        </header>
+        <!--================= Header Section End Here =================-->

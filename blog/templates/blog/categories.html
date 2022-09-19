@@ -1,0 +1,53 @@
+{% extends "blog/base.html" %}
+{% block title %}VIBES | Categories{% endblock %}
+{% load humanize %}
+{% block content %}
+<!--================= Back Wrapper Start Here =================-->
+        <div class="back-wrapper">
+            <!--================= Back Breadcrumbs Section Start Here =================-->
+            <div class="back-breadcrumbs">
+                <div class="breadcrumbs-wrap">
+                    <div class="breadcrumbs-inner">
+                        <div class="container">
+                            <div class="breadcrumbs-text">
+                                <h1 class="breadcrumbs-title">Categories</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--================= Back Breadcrumbs Section End Here =================-->
+             <!--================= Back Trending Stories Start Here =================-->
+            <div class="back-category-style-grid pt-70 pb-70">
+                <div class="container">
+                    <div class="row">
+                        {% for post in categories %}
+                        <div class="col-lg-4">
+                            <div class="image-areas">
+                                <a href="{{post.title}}"><img src="{{post.cover_picture_thumbnail.url }}" alt="image"></a>
+                            </div>
+                            <div class="back-btm-content">
+
+                                <h3><a href="{{post.title}}">{{post.title}}</a></h3>
+
+
+                            </div>
+                        </div>
+                        {% empty %}
+                        <h4>No Categories yet!</h4>
+                        {% endfor %}
+
+                    </div>
+                    <!--================= Back Pagination Start Here =================-->
+
+                    <!--================= Back Pagination End Here =================-->
+                </div>
+            </div>
+            <!--================= Back Trending Stories End Here =================-->
+        </div>
+        <!--================= Back Wrapper End Here =================-->
+
+
+
+{% endblock content %}
